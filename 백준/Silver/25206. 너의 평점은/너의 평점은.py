@@ -1,4 +1,3 @@
-import pprint
 title = []
 point = []
 rank = []
