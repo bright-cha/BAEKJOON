@@ -1,27 +1,31 @@
-import sys
-input = sys.stdin.readline
 def chack():
     global max_v
-    val = 0
-    # 변경된 보드 모든 자리 확인
-    for x in range(size):
-        for y in range(size):
-            dx = x
-            # 각 자리마다 아래칸과 비교하며 내려간다
-            while 0 <= dx + 1 < size and board[dx][y] == board[dx + 1][y]:
+    for y in range(size):
+        val = 0
+        dx = 0
+        # 각 자리마다 아래칸과 비교하며 내려간다
+        while 0 <= dx + 1 < size:
+            if board[dx][y] == board[dx + 1][y]:
                 val += 1
+                dx += 1
+            else:
+                val = 0
                 dx += 1
             if max_v < val:
                 max_v = val
-            val = 0
+        val = 0
+        dx = 0
+        # 각 자리마다오른칸과 비교하며 내려간다
+        while 0 <= dx + 1 < size:
+            if board[y][dx] == board[y][dx + 1]:
+                val += 1
+                dx += 1
+            else:
+                val = 0
+                dx += 1
+            if max_v < val:
+                max_v = val
 
-            # 각 자리마다오른칸과 비교하며 내려간다
-            while 0 <= dx + 1 < size and board[y][dx] == board[y][dx + 1]:
-                val += 1
-                dx += 1
-            if max_v < val:
-                max_v = val
-            val = 0
 
 
 size = int(input())
