@@ -1,4 +1,4 @@
-def chack_x():
+def chack():
     global max_v
     val = 0
     for x in range(size):
@@ -11,13 +11,6 @@ def chack_x():
                 max_v = val
             val = 0
 
-
-def chack_y():
-    global max_v
-    val = 0
-    for x in range(size):
-        for y in range(size):
-            dx = x
             while 0 <= dx + 1 < size and board[y][dx] == board[y][dx + 1]:
                 val += 1
                 dx += 1
@@ -38,8 +31,7 @@ for i in range(size):
             if 0 <= ni < size and 0 <= nj < size:
                 if board[i][j] != board[ni][nj]:
                     board[i][j], board[ni][nj] = board[ni][nj], board[i][j]
-                    chack_x()
-                    chack_y()
+                    chack()
                     board[i][j], board[ni][nj] = board[ni][nj], board[i][j]
 
 print(max_v+1)
