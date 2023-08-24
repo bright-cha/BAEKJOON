@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 def chack():
     global max_v
     for y in range(size):
