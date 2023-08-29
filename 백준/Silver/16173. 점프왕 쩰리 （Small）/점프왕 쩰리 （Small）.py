@@ -9,24 +9,24 @@ def dfs(x, y):
             g = matrix[nx][ny]
             ni = nx + di[k] * g
             nj = ny + dj[k] * g
-            if 1 <= ni < size + 2 and 1 <= nj < size + 2:
-                if visited[ni][nj] == 0 and matrix[ni][nj] != 0:
+            if 0 <= ni < size and 0 <= nj < size:
+                if visited[ni][nj] == 0:
                     que.append((ni, nj))
                     visited[ni][nj] = 1
                     dfs(ni, nj)
 
 
 size = int(input())
-matrix = [[0] * (size + 2)] + [[0] + list(map(int, input().split())) + [0] for _ in range(size)] + [[0] * (size + 2)]
+matrix = [list(map(int, input().split())) for _ in range(size)]
 rst = 0
 
 di = [0, 1]
 dj = [1, 0]
 
-visited = [[0] * (size + 2) for _ in range(size + 2)]
+visited = [[0] * size for _ in range(size)]
 
-que = [(1, 1)]
-dfs(1, 1)
+que = [(0, 0)]
+dfs(0, 0)
 if rst == 1:
     print('HaruHaru')
 else:
