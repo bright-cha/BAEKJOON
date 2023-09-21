@@ -1,4 +1,3 @@
-import heapq
 def find_set(x):
     if parents[x] == x:
         return x
