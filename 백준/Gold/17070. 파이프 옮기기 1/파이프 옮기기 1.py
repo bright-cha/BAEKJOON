@@ -1,40 +1,33 @@
 import sys
 input = sys.stdin.readline
-def dfs(pos):
+def dfs(x, y, direc):
     global cnt
-    x, y, z = pos
+    if cnt >= 1000000:
+        return
 
-    # n,n 도달
-    if x == n - 1 and y == n - 1:
+    if x == size - 1 and y == size - 1:
         cnt += 1
         return
 
-    # 가로 세로 대각선의 경우 대각선 이동
-    if x + 1 < n and y + 1 < n:
-        if graph[x + 1][y + 1] == 0 and graph[x][y + 1] == 0 and graph[x + 1][y] == 0:
-            dfs((x + 1, y + 1, 2))
+    # 대각선인 경우
+    if x + 1 < size and y + 1 < size:
+        if matrix[x + 1][y + 1] == 0 and matrix[x + 1][y] == 0 and matrix[x][y + 1] == 0:
+            dfs(x + 1, y + 1, 3)
 
-    # 가로 대각선의 경우 가로 이동
-    if z == 0 or z == 2:
-        if y + 1 < n:
-            if graph[x][y + 1] == 0:
-                dfs((x, y + 1, 0))
+    # 세로인 경우
+    if x + 1 < size and (direc == 2 or direc == 3):
+        if matrix[x + 1][y] == 0:
+            dfs(x + 1, y, 2)
 
-    # 세로 대각선의 경우 세로 이동
-    if z == 1 or z == 2:
-        if x + 1 < n:
-            if graph[x + 1][y] == 0:
-                dfs((x + 1, y, 1))
+    # 가로인 경우
+    if y + 1 < size and (direc == 1 or direc == 3):
+        if matrix[x][y + 1] == 0:
+            dfs(x, y + 1, 1)
+            
+            
+size = int(input())
+matrix = [list(map(int, input().split())) for _ in range(size)]
 
-
-n = int(input())
-graph = [[] for _ in range(n)]
 cnt = 0
-# 그래프 정보 입력
-for i in range(n):
-    graph[i] = list(map(int, input().split()))
-
-# x,y,현재방향
-dfs((0, 1, 0))
-
+dfs(0, 1, 1)
 print(cnt)
