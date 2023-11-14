@@ -1,7 +1,10 @@
+import sys
+input = sys.stdin.readline
+
 N = int(input())
 
-start = [input() for _ in range(N)]
-end = [input() for _ in range(N)]
+start = [input().rstrip() for _ in range(N)]
+end = [input().rstrip() for _ in range(N)]
 
 cnt = 0
 while end:
