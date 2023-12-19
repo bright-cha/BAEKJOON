@@ -1,3 +1,7 @@
+import sys
+input = sys.stdin.readline
+
+
 def binary_search(start, end):
     if start > end:
         return end
@@ -12,22 +16,14 @@ def binary_search(start, end):
             total += mid
 
     if total > M:
-        end = mid - 1
+        return binary_search(start, mid - 1)
     else:
-        start = mid + 1
-
-    return binary_search(start, end)
+        return binary_search(mid + 1, end)
 
 
-# 3 <= N <= 10000
 N = int(input())
-# 1 <= v <= 100000
 requests = list(map(int, input().split()))
 requests.sort()
-# N <= M <= 1000000000
 M = int(input())
 
-if M >= sum(requests):
-    print(max(requests))
-else:
-    print(binary_search(1, requests[-1]))
+print(binary_search(1, requests[-1]))
