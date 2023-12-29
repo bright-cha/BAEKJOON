@@ -1,34 +1,22 @@
-import sys
-input = sys.stdin.readline
-
-
-def brute_force(idx, start):
+def brute_force(idx, start_team, link_team, start_ability, link_ability):
     global min_v
+    if idx == N:
+        if len(start_team) == len(link_team):
+            min_v = min(min_v, abs(start_ability - link_ability))
+        return
 
-    if idx == N // 2:
-        link = list(set(i for i in range(N)) - set(start))
+    if len(start_team) < N // 2:
+        next_ability = sum([matrix[idx][i] + matrix[i][idx] for i in start_team])
+        brute_force(idx + 1, start_team + [idx], link_team, start_ability + next_ability, link_ability)
 
-        link_ability, start_ability = 0, 0
-        for i in range(idx):
-            for j in range(idx):
-                if i != j:
-                    link_ability += matrix[link[i]][link[j]]
-                    start_ability += matrix[start[i]][start[j]]
-
-        min_v = min(min_v, abs(start_ability - link_ability))
-
-    else:
-        for i in range(start[-1] + 1, N):
-            if visited[i]:
-                visited[i] = 0
-                brute_force(idx + 1, start + [i])
-                visited[i] = 1
+    if len(link_team) < N // 2:
+        next_ability = sum([matrix[idx][i] + matrix[i][idx] for i in link_team])
+        brute_force(idx + 1, start_team, link_team + [idx], start_ability, link_ability + next_ability)
 
 
 N = int(input())
 matrix = [list(map(int, input().split())) for _ in range(N)]
-visited = [1] * N
 
 min_v = float('Inf')
-brute_force(1, [0])
+brute_force(0, [], [], 0, 0)
 print(min_v)
