@@ -1,3 +1,7 @@
+import sys
+input = sys.stdin.readline
+
+
 def brute_force(idx, start):
     global min_v
 
