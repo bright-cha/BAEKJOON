@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 def brute_force(idx, start_team, link_team, start_ability, link_ability):
     global min_v
     if idx == N:
