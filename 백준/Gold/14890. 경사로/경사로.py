@@ -1,3 +1,6 @@
+import sys
+
+
 def check_row(x):
     smooth = 1
     for i in range(1, N):
@@ -68,8 +71,8 @@ def check_col(x):
         return True
 
 
-N, L = map(int, input().split())
-matrix = [list(map(int, input().split())) for _ in range(N)]
+N, L = map(int, sys.stdin.readline().split())
+matrix = [list(map(int, sys.stdin.readline().split())) for _ in range(N)]
 
 cnt = 0
 for i in range(N):
