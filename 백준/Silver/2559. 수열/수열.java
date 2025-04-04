@@ -7,7 +7,6 @@ class Main {
     public static int n, k;
     public static int ans = Integer.MIN_VALUE;
     public static int[] arr = new int[MAX_N];
-    public static int[] memo;
 
    public static void main(String[] args) {
        Scanner sc = new Scanner(System.in);
@@ -15,18 +14,20 @@ class Main {
        n = sc.nextInt();
        k = sc.nextInt();
 
-       memo = new int[n - k + 1];
-
        for (int i = 0; i < n; i++) {
            arr[i] = sc.nextInt();
        }
 
-       for (int i = 0; i < n - k + 1; i++) {
-           for (int j = 0; j < k; j++) {
-               memo[i] += arr[i + j];
-           }
+       int num = 0;
+       for (int i = 0; i < k; i++) {
+           num += arr[i];
+       }
+       ans = Math.max(ans, num);
 
-           ans = Math.max(ans, memo[i]);
+       for (int i = k; i < n; i++) {
+           num -= arr[i - k];
+           num += arr[i];
+           ans = Math.max(ans, num);
        }
 
        System.out.println(ans);
