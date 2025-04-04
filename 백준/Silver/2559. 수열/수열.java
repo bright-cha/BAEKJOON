@@ -1,4 +1,7 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 class Main {
 
@@ -8,14 +11,16 @@ class Main {
     public static int ans = Integer.MIN_VALUE;
     public static int[] arr = new int[MAX_N];
 
-   public static void main(String[] args) {
-       Scanner sc = new Scanner(System.in);
+   public static void main(String[] args) throws IOException {
+       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       StringTokenizer st = new StringTokenizer(br.readLine());
 
-       n = sc.nextInt();
-       k = sc.nextInt();
+       n = Integer.parseInt(st.nextToken());
+       k = Integer.parseInt(st.nextToken());
 
+       st = new StringTokenizer(br.readLine());
        for (int i = 0; i < n; i++) {
-           arr[i] = sc.nextInt();
+           arr[i] = Integer.parseInt(st.nextToken());
        }
 
        int num = 0;
